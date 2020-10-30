@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - ISM Official Web</title>
 
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/plugins/metisMenu/metisMenu.min.css">
-    <link rel="stylesheet" href="/assets/css/sb-admin-2.css">
-    <link rel="stylesheet" href="/assets/font-awesome-4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/plugins/metisMenu/metisMenu.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/sb-admin-2.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/font-awesome-4.1.0/css/font-awesome.min.css') }}">
 </head>
 <body>
     <div class="wrapper"><!-- /.wrapper -->
@@ -45,8 +45,8 @@
                 </li><!-- /.dropdown -->
             </ul><!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
+            <div class="navbar-default sidebar" role="navigation"><!-- /.navbar-sidebar -->
+                <div class="sidebar-nav navbar-collapse"><!-- /.sidebar-collapse -->
                     <ul class="nav" id="side-menu"><!-- /#side-menu -->
                         <li><!-- /.Dashboard -->
                             <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
@@ -79,14 +79,14 @@
                                 </li>
                             </ul><!-- /.nav-second-level -->
                         </li><!-- /.Multi-Level Dropdown -->
-                        <li class="active"><!-- sample page -->
+                        <li><!-- sample page -->
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level"><!-- /.nav-second-level -->
                                 <li>
-                                    <a class="active" href="blank.html">Blank Page</a>
+                                    <a href="#">Blank Page</a>
                                 </li>
                                 <li>
-                                    <a href="login.html">Login Page</a>
+                                    <a href="#">Login Page</a>
                                 </li>
                             </ul><!-- /.nav-second-level -->
                         </li><!-- sample page -->
@@ -119,9 +119,8 @@
                             </ul><!-- /.nav-second-level -->
                         </li><!-- 商品管理  -->
                     </ul><!-- /#side-menu -->
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
+                </div><!-- /.sidebar-collapse -->
+            </div><!-- /.navbar-sidebar -->
         </nav><!-- /.navbar-static-top -->
 
         <!-- 內頁 -->
@@ -133,9 +132,9 @@
         <!-- /.內頁 -->
     </div><!-- /.wrapper -->
 
-    <script src="/assets/js/jquery.js" defer></script>
-    <script src="/assets/js/bootstrap.min.js" defer></script>
-    <script src="/assets/js/plugins/metisMenu/metisMenu.min.js" defer></script>
-    <script src="/assets/js/sb-admin-2.js" defer></script>
+    <script src="{{ asset('/assets/js/jquery.js') }}" defer></script>
+    <script src="{{ asset('/assets/js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('/assets/js/plugins/metisMenu/metisMenu.min.js') }}" defer></script>
+    <script src="{{ asset('/assets/js/sb-admin-2.js') }}" defer></script>
 </body>
 </html>
