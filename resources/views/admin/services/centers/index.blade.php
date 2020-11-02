@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Service Centers')
+@section('title', $title)
 
 @section('content')
     <h1>
