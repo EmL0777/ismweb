@@ -104,6 +104,8 @@ class ServiceCenterController extends Controller
      */
     public function destroy(ServiceCenter $serviceCenter)
     {
-        //
+        $serviceCenter->delete();
+        return redirect()->route('centers.index')
+            ->with('success', " deleted successfully.");
     }
 }
