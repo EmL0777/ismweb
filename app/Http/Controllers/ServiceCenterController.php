@@ -27,22 +27,39 @@ class ServiceCenterController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        $binding = [
+          'title' => 'Create Center',
+        ];
+        return view('admin.services.centers.create', $binding);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:50',
+            'address' => 'required|max:255',
+            'phone1' => 'required|digits_between:5,20',
+            'phone2' => 'digits_between:5,20',
+            'fax' => 'required|digits_between:5,20',
+            'email' => 'required|email|',
+            'attn' => 'required|max:50',
+            'continent' => 'required|max:20',
+            'country' => 'required|max:50',
+        ]);
+
+        ServiceCenter::create($request->all());
+
+        return redirect()->to('/services/centers');
     }
 
     /**

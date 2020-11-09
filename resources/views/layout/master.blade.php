@@ -52,10 +52,10 @@
                             <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li><!-- /.Dashboard -->
                         <li><!-- /.Multi-Level Dropdown -->
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Service<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level"><!-- /.nav-second-level -->
                                 <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="/services/centers">Centers</a>
                                 </li>
                                 <li>
                                     <a href="#">Second Level Item</a>
