@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -35,6 +39,47 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+//        $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        $title = 'Login';
+        return view('auth.login', compact('title'));
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        $rules = [
+//            Email
+            'email' => [
+                'required',
+                'max:150',
+                'email',
+            ],
+//            Password
+            'password' => [
+                'required',
+                'min:6',
+            ],
+        ];
+
+        $validator = Validator::make($credentials ,$rules);
+
+        if ($validator->fails()) {
+            return redirect()->route('login')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if (!Auth::attempt($credentials)) {
+            return redirect()->route('login')
+                ->withErrors(['msg' => 'Login Fail!!'])
+                ->withInput();
+        }
+
+        return redirect()->intended('/');
     }
 }
