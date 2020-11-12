@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin'], function (){
 
     Route::post('auth/login', 'Auth\LoginController@login')->name('auth.login');
 
-    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
     Route::group(['prefix' => 'services'], function (){
         Route::resource('/centers', 'ServiceCenterController')->middleware('auth');
