@@ -5,7 +5,7 @@
 @section('content')
     <h1>
         {{ $title }}
-        <td><a type="button" class="btn btn-primary" href="centers/create">Create</a></td>
+        <td><a type="button" class="btn btn-primary" href="{{ route('centers.create') }}">Create</a></td>
     </h1>
 
     @if ($message = session()->get('success'))

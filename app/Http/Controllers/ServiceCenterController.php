@@ -59,7 +59,7 @@ class ServiceCenterController extends Controller
 
         ServiceCenter::create($request->all());
 
-        return redirect()->to('/services/centers');
+        return redirect()->route('centers.index');
     }
 
     /**
@@ -99,13 +99,15 @@ class ServiceCenterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ServiceCenter  $serviceCenter
-     * @return \Illuminate\Http\Response
+     * @param \App\Entities\ServiceCenter $serviceCenter
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(ServiceCenter $serviceCenter)
+    public function destroy($id)
     {
-        $serviceCenter->delete();
+        $center = ServiceCenter::find($id);
+        $center->delete();
+
         return redirect()->route('centers.index')
-            ->with('success', " deleted successfully.");
+            ->with('success', " Deleted successfully.");
     }
 }

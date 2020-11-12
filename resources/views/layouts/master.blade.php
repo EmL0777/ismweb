@@ -55,7 +55,7 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Service<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level"><!-- /.nav-second-level -->
                                 <li>
-                                    <a href="/services/centers">Centers</a>
+                                    <a href="{{ route('centers.index') }}">Centers</a>
                                 </li>
                                 <li>
                                     <a href="#">Second Level Item</a>
