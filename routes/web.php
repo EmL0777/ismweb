@@ -15,12 +15,14 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
-Route::post('auth/login', 'Auth\LoginController@login')->name('auth.login');
+    Route::post('auth/login', 'Auth\LoginController@login')->name('auth.login');
 
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['prefix' => 'services'], function (){
-    Route::resource('/centers', 'ServiceCenterController');
+    Route::group(['prefix' => 'services'], function (){
+        Route::resource('/centers', 'ServiceCenterController')->middleware('auth');
+    });
 });
