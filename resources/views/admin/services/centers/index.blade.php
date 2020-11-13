@@ -50,5 +50,6 @@
             </tbody>
             @endforeach
         </table>
+        {{ $centers->links() }}
     </div>
 @endsection

@@ -14,7 +14,7 @@ class ServiceCenterController extends Controller
      */
     public function index()
     {
-        $centers = ServiceCenter::all();
+        $centers = ServiceCenter::paginate(10);
 
         $binding = [
             'title' => 'Service Centers',

@@ -14,6 +14,6 @@ class ServiceCentersTableSeeder extends Seeder
     public function run()
     {
         DB::table('service_centers')->truncate();
-        factory(ServiceCenter::class, 10)->create();
+        factory(ServiceCenter::class, 30)->create();
     }
 }
