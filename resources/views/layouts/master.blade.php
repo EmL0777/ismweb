@@ -49,7 +49,7 @@
                 <div class="sidebar-nav navbar-collapse"><!-- /.sidebar-collapse -->
                     <ul class="nav" id="side-menu"><!-- /#side-menu -->
                         <li><!-- /.Dashboard -->
-                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li><!-- /.Dashboard -->
                         <li><!-- /.Multi-Level Dropdown -->
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Service<span class="fa arrow"></span></a>

@@ -22,6 +22,11 @@ Route::group(['prefix' => 'admin'], function (){
 
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
+    Route::get('/', function () {
+        $title = 'Dashboard';
+       return view('admin.dashboard', compact('title'));
+    })->name('admin.dashboard')->middleware('auth');
+
     Route::group(['prefix' => 'services'], function (){
         Route::resource('/centers', 'ServiceCenterController')->middleware('auth');
     });

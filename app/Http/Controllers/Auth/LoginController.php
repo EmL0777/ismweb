@@ -80,7 +80,7 @@ class LoginController extends Controller
                 ->withInput();
         }
 
-        return redirect()->intended('/');
+        return redirect()->intended(route('admin.dashboard'));
     }
 
     public function logout()
