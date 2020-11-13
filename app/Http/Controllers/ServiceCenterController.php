@@ -68,9 +68,13 @@ class ServiceCenterController extends Controller
      * @param  \App\ServiceCenter  $serviceCenter
      * @return \Illuminate\Http\Response
      */
-    public function show(ServiceCenter $serviceCenter)
+    public function show($id)
     {
-        //
+        $serviceCenter = ServiceCenter::findOrFail($id);
+
+        $title = 'Center Detail';
+
+        return view('admin.services.centers.show', compact('serviceCenter', 'title'));
     }
 
     /**

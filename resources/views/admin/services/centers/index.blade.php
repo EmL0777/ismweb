@@ -5,7 +5,7 @@
 @section('content')
     <h1>
         {{ $title }}
-        <td><a type="button" class="btn btn-primary" href="{{ route('centers.create') }}">Create</a></td>
+        <a type="button" class="btn btn-primary" href="{{ route('centers.create') }}">Create</a>
     </h1>
 
     @if ($message = session()->get('success'))
@@ -36,7 +36,7 @@
                 <td>{{ $center->phone1 }}</td>
                 <td>{{ $center->attn }}</td>
                 <td>{{ $center->country }}</td>
-                <td><a type="button" class="btn btn-info" href="#">Info</a></td>
+                <td><a type="button" class="btn btn-info" href="{{ route('centers.show', $center->id) }}">Info</a></td>
                 <td><a type="button" class="btn btn-primary" href="#">Edit</a></td>
                 <td>
                     <form action="{{ route('centers.destroy', $center->id) }}" method="POST">
