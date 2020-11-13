@@ -83,9 +83,13 @@ class ServiceCenterController extends Controller
      * @param  \App\ServiceCenter  $serviceCenter
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceCenter $serviceCenter)
+    public function edit($id)
     {
-        //
+        $serviceCenter = ServiceCenter::findOrFail($id);
+
+        $title = 'Edit';
+
+        return view('admin.services.centers.edit', compact('serviceCenter', 'title'));
     }
 
     /**
@@ -95,9 +99,25 @@ class ServiceCenterController extends Controller
      * @param  \App\ServiceCenter  $serviceCenter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ServiceCenter $serviceCenter)
+    public function update(Request $request, $id)
     {
-        //
+        $serviceCenter = ServiceCenter::findOrFail($id);
+        $request->validate([
+            'title' => 'required|max:50',
+            'address' => 'required|max:255',
+            'phone1' => 'required|digits_between:5,20',
+            'phone2' => 'digits_between:5,20',
+            'fax' => 'required|digits_between:5,20',
+            'email' => 'required|email|',
+            'attn' => 'required|max:50',
+            'continent' => 'required|max:20',
+            'country' => 'required|max:50',
+        ]);
+
+        $serviceCenter->update($request->all());
+
+        return redirect()->route('centers.index')
+            ->with('success', 'Update successfully.');
     }
 
     /**
