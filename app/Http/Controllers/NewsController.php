@@ -32,7 +32,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.news.create')->with('title', $this->title);
     }
 
     /**
@@ -43,7 +43,38 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        if (! $request->has('display')) {
+            $request->merge(['display' => "0"]);
+        }
+        if (! $request->has('pinned')) {
+            $request->merge(['pinned' => "0"]);
+        }
+
+        $news = News::create($request->all());
+        $news->News_i18ns()->createMany([
+            [
+                'title' => $request->get('name'),
+                'languages' => 'en',
+            ],
+            [
+                'title' => $request->get('name'),
+                'languages' => 'ja',
+            ],
+            [
+                'title' => $request->get('name'),
+                'languages' => 'zh-TW',
+            ],
+            [
+                'title' => $request->get('name'),
+                'languages' => 'zh-CN',
+            ],
+        ]);
+
+        return redirect()->route('news.index')
+            ->with('success', 'Create successfully.');
     }
 
     /**

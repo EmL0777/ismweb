@@ -80,15 +80,7 @@
                             </ul><!-- /.nav-second-level -->
                         </li><!-- /.Multi-Level Dropdown -->
                         <li><!-- sample page -->
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level"><!-- /.nav-second-level -->
-                                <li>
-                                    <a href="#">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="#">Login Page</a>
-                                </li>
-                            </ul><!-- /.nav-second-level -->
+                            <a href="{{ route('news.index') }}"><i class="fa fa-files-o fa-fw"></i> News</a>
                         </li><!-- sample page -->
                         <li><!-- 商品管理  -->
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> 商品管理<span class="fa arrow"></span></a>
