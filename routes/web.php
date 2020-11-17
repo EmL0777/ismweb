@@ -30,4 +30,6 @@ Route::group(['prefix' => 'admin'], function (){
     Route::group(['prefix' => 'services'], function (){
         Route::resource('/centers', 'ServiceCenterController')->middleware('auth');
     });
+
+    Route::resource('/news', 'NewsController')->middleware('auth');
 });
