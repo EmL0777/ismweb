@@ -8,6 +8,11 @@ use App\Entities\News;
 class NewsController extends Controller
 {
     /**
+     * @var string
+     */
+    protected  $title = 'News';
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -15,7 +20,7 @@ class NewsController extends Controller
     public function index()
     {
         $newsList = News::orderBy('created_at', 'desc')->paginate(10);
-        $title = 'News';
+        $title = $this->title;
 
         return view('admin.news.index', compact('newsList', 'title'));
     }
