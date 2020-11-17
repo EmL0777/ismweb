@@ -96,7 +96,11 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = news::find($id);
+
+        $title = 'Edit';
+
+        return view('admin.news.edit', compact('news', 'title'));
     }
 
     /**
@@ -108,7 +112,21 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $news = News::findOrFail($id);
+        $request->validate([
+           'name' => 'required|max:255',
+       ]);
+        if (! $request->has('display')) {
+            $request->merge(['display' => "0"]);
+        }
+        if (! $request->has('pinned')) {
+            $request->merge(['pinned' => "0"]);
+        }
+
+        $news->update($request->all());
+
+        return redirect()->route('news.index')
+            ->with('success', 'Update successfully.');
     }
 
     /**
@@ -119,6 +137,10 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::find($id);
+        $news->delete();
+
+        return redirect()->route('news.index')
+            ->with('success', " Deleted successfully.");
     }
 }
