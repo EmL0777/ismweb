@@ -70,7 +70,8 @@
                     <td>{{ $news_i18n->title }}</td>
                     <td>{{ $news_i18n->content }}</td>
                     <td>{{ $news_i18n->languages }}</td>
-                    <td><a type="button" class="btn btn-primary" href="#">Edit</a></td>
+                    <td><a type="button" class="btn btn-primary" href="{{ route('languages.edit', $news_i18n->id)
+                    }}">Edit</a></td>
                 </tr>
             @endforeach
             </tbody>

@@ -32,4 +32,8 @@ Route::group(['prefix' => 'admin'], function (){
     });
 
     Route::resource('/news', 'NewsController')->middleware('auth');
+
+    Route::resource('/news/languages', 'NewsLangController')
+        ->only(['edit', 'update'])
+        ->middleware('auth');
 });
