@@ -5,7 +5,7 @@ use App\Entities\News;
 use App\Entities\News_i18n;
 use Illuminate\Support\Facades\DB;
 
-class NewsSeeder extends Seeder
+class NewsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
