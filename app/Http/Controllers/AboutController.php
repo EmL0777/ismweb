@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\About;
+use App\Entities\About;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -14,7 +14,25 @@ class AboutController extends Controller
      */
     public function index()
     {
-        //
+        $abouts = About::orderBy('order', 'ASC')->get();
+        $title = 'Abouts List';
+
+        return view('admin.abouts.index', compact('abouts', 'title'));
+    }
+
+    public function updateSort(Request $request)
+    {
+        $abouts = About::all();
+
+        foreach ($abouts as $about) {
+            foreach ($request->order as $order) {
+                if ($order['id'] == $about->id) {
+                    $about->update(['order' => $order['position']]);
+                }
+            }
+        }
+
+        return response('Update Successfully.', 200);
     }
 
     /**

@@ -36,4 +36,9 @@ Route::group(['prefix' => 'admin'], function (){
     Route::resource('/news/languages', 'NewsLangController')
         ->only(['edit', 'update'])
         ->middleware('auth');
+
+    Route::resource('abouts', 'AboutController')->middleware('auth');
+    Route::post('abouts-sortable','AboutController@updateSort')
+        ->middleware('auth')
+        ->name('abouts.sortable');
 });
