@@ -10,7 +10,7 @@ $factory->define(About::class, function (Faker $faker) {
     return [
         'intro' => $faker->text(20),
         'event_year' => $faker->year,
-        'order' => 0,
+        'position' => 0,
     ];
 });
 

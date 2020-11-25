@@ -15,11 +15,18 @@ class About extends Model
         'id',
         'intro',
         'event_year',
-        'order',
+        'position',
     ];
 
     public function Abouts_i18ns()
     {
         return $this->hasMany(About_i18n::class);
+    }
+
+    public function saveQuietly()
+    {
+        return static::withoutEvents(function () {
+            return $this->save();
+        });
     }
 }

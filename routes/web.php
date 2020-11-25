@@ -37,6 +37,9 @@ Route::group(['prefix' => 'admin'], function (){
         ->only(['edit', 'update'])
         ->middleware('auth');
 
+    Route::post('abouts/reorder', 'AboutController@reorder')
+        ->middleware('auth')
+        ->name('abouts.reorder');
     Route::resource('abouts', 'AboutController')->middleware('auth');
     Route::post('abouts-sortable','AboutController@updateSort')
         ->middleware('auth')

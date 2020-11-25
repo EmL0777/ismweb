@@ -23,7 +23,7 @@
                 <th width="10"></th>
                 <th>Intro</th>
                 <th>Year</th>
-                <th>Order</th>
+                <th>Position</th>
                 <th>Created_at</th>
                 <th>Info</th>
                 <th>Edit</th>
@@ -36,7 +36,7 @@
                     <td><i class="fa fa-sort"></i></td>
                     <td>{{ $about->intro }}</td>
                     <td>{{ $about->event_year }}</td>
-                    <td>{{ $about->order }}</td>
+                    <td>{{ $about->position }}</td>
                     <td>{{ $about->created_at }}</td>
                     <td><a type="button" class="btn btn-info" href="{{ route('abouts.show', $about->id)
                     }}">Info</a></td>
@@ -62,45 +62,32 @@
     @parent
     <script src="{{ asset('/assets/js/datatables.min.js') }}"></script>
     <script>
-        $(function () {
-            $("#table").DataTable();
+        $(document).ready(function () {
+            $('table').DataTable();
+            let $abouts = $('#tablecontents');
+            let token = $('meta[name="csrf-token"]').attr('content');
 
-            $( "#tablecontents" ).sortable({
-                items: "tr",
-                cursor: 'move',
-                opacity: 0.6,
-                update: function() {
-                    sendOrderToServer();
+            $abouts.sortable({
+                cancel: 'thead',
+                stop: () => {
+                    let items = $abouts.sortable('toArray', {attribute: 'data-id'});
+                    let ids = $.grep(items, (item) => item !== "");
+
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "{{ route('abouts.reorder') }}",
+                        data: {
+                            ids: ids,
+                            _token: token
+                        }
+                    })
+                    .fail(() => {
+                        alert('Error occurred while sending reorder request');
+                        location.reload();
+                    });
                 }
             });
-
-            function sendOrderToServer() {
-                let order = [];
-                let token = $('meta[name="csrf-token"]').attr('content');
-                $('tr.row1').each(function(index,element) {
-                    order.push({
-                        id: $(this).attr('data-id'),
-                        position: index+1
-                    });
-                });
-
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "{{ route('abouts.sortable') }}",
-                    data: {
-                        order: order,
-                        _token: token
-                    },
-                    success: function(response) {
-                        if (response.status == "success") {
-                            console.log(response);
-                        } else {
-                            console.log(response);
-                        }
-                    }
-                });
-            }
         });
     </script>
 @endsection

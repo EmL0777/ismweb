@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Entities\About;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 class AboutController extends Controller
 {
@@ -14,25 +16,10 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $abouts = About::orderBy('order', 'ASC')->get();
+        $abouts = About::orderBy('position', 'ASC')->get();
         $title = 'Abouts List';
 
         return view('admin.abouts.index', compact('abouts', 'title'));
-    }
-
-    public function updateSort(Request $request)
-    {
-        $abouts = About::all();
-
-        foreach ($abouts as $about) {
-            foreach ($request->order as $order) {
-                if ($order['id'] == $about->id) {
-                    $about->update(['order' => $order['position']]);
-                }
-            }
-        }
-
-        return response('Update Successfully.', 200);
     }
 
     /**
@@ -42,7 +29,7 @@ class AboutController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.abouts.create')->with('title', 'New About');
     }
 
     /**
@@ -99,5 +86,29 @@ class AboutController extends Controller
     public function destroy(About $about)
     {
         //
+    }
+
+    /**
+     * Reorder the position by AJAX.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function reorder(Request $request)
+    {
+        $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'integer',
+           ]);
+
+        foreach ($request->ids as $index => $id) {
+            DB::table('abouts')
+                ->where('id', $id)
+                ->update([
+                    'position' => $index + 1
+                     ]);
+        }
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
