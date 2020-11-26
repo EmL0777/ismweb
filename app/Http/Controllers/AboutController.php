@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\About;
+use App\Http\Requests\StoreAboutRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,9 +39,30 @@ class AboutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAboutRequest $request)
     {
-        //
+        $about = About::create($request->all());
+        $about->Abouts_i18ns()->createMany([
+            [
+                'title' => $request->get('intro'),
+                'languages' => 'en'
+            ],
+            [
+                'title' => $request->get('intro'),
+                'languages' => 'ja'
+            ],
+            [
+                'title' => $request->get('intro'),
+                'languages' => 'zh-TW'
+            ],
+            [
+                'title' => $request->get('intro'),
+                'languages' => 'zh-CN'
+            ]
+        ]);
+
+        return redirect()->route('abouts.index')
+            ->with('success', 'Create successfully.');
     }
 
     /**

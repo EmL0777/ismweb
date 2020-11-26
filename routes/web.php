@@ -41,7 +41,4 @@ Route::group(['prefix' => 'admin'], function (){
         ->middleware('auth')
         ->name('abouts.reorder');
     Route::resource('abouts', 'AboutController')->middleware('auth');
-    Route::post('abouts-sortable','AboutController@updateSort')
-        ->middleware('auth')
-        ->name('abouts.sortable');
 });
