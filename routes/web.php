@@ -41,4 +41,11 @@ Route::group(['prefix' => 'admin'], function (){
         ->middleware('auth')
         ->name('abouts.reorder');
     Route::resource('abouts', 'AboutController')->middleware('auth');
+
+    Route::resource('/about/languages', 'AboutLangController', ['names' => [
+        'edit' => 'about.lang.edit',
+        'update' => 'about.lang.update'
+    ]])
+        ->only(['edit', 'update'])
+        ->middleware('auth');
 });
