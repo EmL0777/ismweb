@@ -84,7 +84,8 @@ class AboutController extends Controller
      */
     public function edit(About $about)
     {
-        //
+        $title = 'Edit About';
+        return view('admin.abouts.edit', compact('about', 'title'));
     }
 
     /**
@@ -94,9 +95,18 @@ class AboutController extends Controller
      * @param  \App\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, About $about)
+    public function update(Request $request, int $id)
     {
-        //
+        $about = About::findOrFail($id);
+        $request->validate([
+            'intro' => 'required|max:255',
+            'event_year' => 'required'
+        ]);
+
+        $about->update($request->all());
+
+        return redirect()->route('abouts.index')
+            ->with('success', 'Update successfully.');
     }
 
     /**
