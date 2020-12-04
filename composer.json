@@ -21,6 +21,7 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0",
+        "recca0120/laravel-tracy": "^1.8",
         "roave/security-advisories": "dev-master"
     },
     "config": {
