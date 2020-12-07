@@ -24,7 +24,7 @@
                 <th>Intro</th>
                 <th>Year</th>
                 <th>Position</th>
-                <th>Created_at</th>
+                <th>Updated_at</th>
                 <th>Info</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -37,7 +37,7 @@
                     <td>{{ $about->intro }}</td>
                     <td>{{ $about->event_year }}</td>
                     <td>{{ $about->position }}</td>
-                    <td>{{ $about->created_at }}</td>
+                    <td>{{ $about->updated_at }}</td>
                     <td><a type="button" class="btn btn-info" href="{{ route('abouts.show', $about->id)
                     }}">Info</a></td>
                     <td><a type="button" class="btn btn-primary" href="{{ route('abouts.edit', $about->id)
@@ -60,10 +60,8 @@
 
 @section('scripts')
     @parent
-    <script src="{{ asset('/assets/js/datatables.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('table').DataTable();
             let $abouts = $('#tablecontents');
             let token = $('meta[name="csrf-token"]').attr('content');
 
@@ -81,6 +79,9 @@
                             ids: ids,
                             _token: token
                         }
+                    })
+                    .done(() => {
+                        location.reload();
                     })
                     .fail(() => {
                         alert('Error occurred while sending reorder request');
