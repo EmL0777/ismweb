@@ -73,7 +73,9 @@ class AboutController extends Controller
      */
     public function show(About $about)
     {
-        //
+        $title = 'Abouts Detail';
+
+        return view('admin.abouts.show',  compact('title','about'));
     }
 
     /**
