@@ -117,7 +117,10 @@ class AboutController extends Controller
      */
     public function destroy(About $about)
     {
-        //
+        $about->delete();
+
+        return redirect()->route('abouts.index')
+            ->with('success', " Deleted successfully.");
     }
 
     /**

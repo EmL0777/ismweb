@@ -16,6 +16,12 @@
         <a type="button" class="btn btn-primary" href="{{ route('abouts.create') }}">Create</a>
     </h1>
 
+    @if ($message = session()->get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
     <div class="table-responsive">
         <table id="table" class="table table-bordered">
             <thead>

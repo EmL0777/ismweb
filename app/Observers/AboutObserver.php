@@ -80,7 +80,7 @@ class AboutObserver
             ->get();
 
         foreach ($lowerPriorityAbouts as $lowerPriorityAbout) {
-            $lowerPriorityAbout->poeess;
+            $lowerPriorityAbout->position--;
             $lowerPriorityAbout->saveQuietly();
         }
     }
