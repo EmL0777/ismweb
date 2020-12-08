@@ -4,8 +4,11 @@
 
 @section('content')
     <h1>
-        {{ $title }}：{{ $about_i18n->title }}
-        <a type="button" class="btn btn-primary" href="{{ route('abouts.edit', $about_i18n->about_id) }}">Back</a>
+        {{ $title }}
+        <a type="button" class="btn btn-primary"
+           href="{{ route('abouts.edit', $about_i18n->about_id) }}">
+            {{ trans('admin.global.back') }}
+        </a>
     </h1>
 
     {{-- 錯誤訊息模板元件 --}}

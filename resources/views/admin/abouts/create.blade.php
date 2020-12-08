@@ -20,38 +20,39 @@
         {{ method_field('POST') }}
 
         <label for="intro">
-            Intro：
+            {{ trans('admin.abouts.outline') }}：
             <input type="text"
                    id="intro"
                    name="intro"
-                   placeholder="Intro"
+                   placeholder="{{ trans('admin.abouts.outline') }}"
                    value="{{ old('intro') }}"
             >
         </label>
 
         <label for="year">
-            Event Year：
+            {{ trans('admin.abouts.year') }}：
             <input type="text"
                    id="year"
                    name="event_year"
-                   placeholder="Event Year"
+                   placeholder="{{ trans('admin.abouts.year') }}"
                    class="date-picker-year"
-{{--                   value="{{ old('year') }}"--}}
                    autocomplete="off"
             >
         </label>
 
         <label for="position">
-            Position：
+            {{ trans('admin.abouts.position') }}：
             <input type="number"
                    id="position"
                    name="position"
-                   placeholder="Position"
+                   placeholder="{{ trans('admin.abouts.position') }}"
                    value="{{ old('position') }}"
             >
         </label>
 
-        <button type="submit" class="btn btn-default">Create About</button>
+        <button type="submit" class="btn btn-primary">
+            {{ trans('admin.global.create') }}
+        </button>
 
         {{-- CSRF 欄位 --}}
         {{ csrf_field() }}

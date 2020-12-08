@@ -6,7 +6,12 @@
 
 <!-- 傳送資料到母模板，並指定變數為 content -->
 @section('content')
-    <h1>{{ $title }}</h1>
+    <h1>
+        {{ $title }}
+        <a type="button" class="btn btn-primary" href="{{ route('abouts.index') }}">
+            {{ trans('admin.global.back') }}
+        </a>
+    </h1>
 
     {{-- 錯誤訊息模板元件 --}}
     @include('admin.components.validationErrorMessage')
@@ -20,7 +25,7 @@
         {{ method_field('PUT') }}
 
         <label for="intro">
-            Intro：
+            {{ trans('admin.abouts.outline') }}：
             <input type="text"
                    id="intro"
                    name="intro"
@@ -30,7 +35,7 @@
         </label>
 
         <label for="year">
-            Event Year：
+            {{ trans('admin.abouts.year') }}：
             <input type="text"
                    id="year"
                    name="event_year"
@@ -42,7 +47,7 @@
         </label>
 
         <label for="position">
-            Position：
+            {{ trans('admin.abouts.position') }}：
             <input type="number"
                    id="position"
                    name="position"
@@ -51,7 +56,9 @@
             >
         </label>
 
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-success">
+            {{ trans('admin.global.save') }}
+        </button>
 
         {{-- CSRF 欄位 --}}
         {{ csrf_field() }}
@@ -61,10 +68,10 @@
         <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Language</th>
-                <th>Edit</th>
+                <th>{{ trans('admin.global.title') }}</th>
+                <th>{{ trans('admin.global.title') }}</th>
+                <th>{{ trans('admin.global.content') }}</th>
+                <th>{{ trans('admin.global.edit') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -72,9 +79,27 @@
                 <tr>
                     <td>{{ $abouts_i18n->title }}</td>
                     <td>{{ $abouts_i18n->content }}</td>
-                    <td>{{ $abouts_i18n->languages }}</td>
-                    <td><a type="button" class="btn btn-primary" href="{{ route('about.lang.edit', $abouts_i18n->id)
-                    }}">Edit</a></td>
+                    <td>
+                        @switch($abouts_i18n->languages)
+                            @case('ja')
+                            {{ trans('admin.global.language.ja') }}
+                            @break
+                            @case('zh-CN')
+                            {{ trans('admin.global.language.zh-CN') }}
+                            @break
+                            @case('zh-TW')
+                            {{ trans('admin.global.language.zh-TW') }}
+                            @break
+                            @default
+                            {{ trans('admin.global.language.en') }}
+                        @endswitch
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-primary"
+                           href="{{ route('about.lang.edit', $abouts_i18n->id)}}">
+                            {{ trans('admin.global.edit') }}
+                        </a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

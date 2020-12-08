@@ -4,24 +4,26 @@
 
 @section('content')
     <h1>
-        {{ $title }}：{{ $about->name }}
-        <a type="button" class="btn btn-primary" href="{{ route('abouts.index') }}">Back</a>
+        {{ $title }}：{{ $about->intro }}
+        <a type="button" class="btn btn-primary" href="{{ route('abouts.index') }}">
+            {{ trans('admin.global.back') }}
+        </a>
     </h1>
     <div class="panel panel-info">
         <div class="panel-heading">
-            Info Panel
+            {{ trans('admin.global.info') }}
         </div>
         <div class="panel-body">
             <dl class="dl-horizontal">
-                <dt>Intro</dt>
+                <dt>{{ trans('admin.abouts.outline') }}</dt>
                 <dd>{{ $about->intro }}</dd>
-                <dt>Event Year</dt>
+                <dt>{{ trans('admin.abouts.year') }}</dt>
                 <dd>{{ $about->event_year }}</dd>
-                <dt>Position</dt>
+                <dt>{{ trans('admin.abouts.position') }}</dt>
                 <dd>{{ $about->position }}</dd>
-                <dt>Created_at</dt>
+                <dt>{{ trans('admin.global.created_at') }}</dt>
                 <dd>{{ $about->created_at }}</dd>
-                <dt>Updated_at</dt>
+                <dt>{{ trans('admin.global.updated_at') }}</dt>
                 <dd>{{ $about->updated_at }}</dd>
             </dl>
         </div>
@@ -30,11 +32,11 @@
         <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Language</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
+                <th>{{ trans('admin.global.title') }}</th>
+                <th>{{ trans('admin.global.content') }}</th>
+                <th>{{ trans('admin.global.language.name') }}</th>
+                <th>{{ trans('admin.global.created_at') }}</th>
+                <th>{{ trans('admin.global.updated_at') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -42,7 +44,21 @@
                 <tr>
                     <td>{{ $about_i18n->title }}</td>
                     <td>{{ $about_i18n->content }}</td>
-                    <td>{{ $about_i18n->languages }}</td>
+                    <td>
+                        @switch($about_i18n->languages)
+                            @case('ja')
+                                {{ trans('admin.global.language.ja') }}
+                                @break
+                            @case('zh-CN')
+                                {{ trans('admin.global.language.zh-CN') }}
+                                @break
+                            @case('zh-TW')
+                                {{ trans('admin.global.language.zh-TW') }}
+                                @break
+                            @default
+                                {{ trans('admin.global.language.en') }}
+                        @endswitch
+                    </td>
                     <td>{{ $about_i18n->created_at }}</td>
                     <td>{{ $about_i18n->updated_at }}</td>
                 </tr>

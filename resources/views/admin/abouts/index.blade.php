@@ -13,7 +13,9 @@
 @section('content')
     <h1>
         {{ $title }}
-        <a type="button" class="btn btn-primary" href="{{ route('abouts.create') }}">Create</a>
+        <a type="button" class="btn btn-primary" href="{{ route('abouts.create') }}">
+            {{ trans('admin.global.create') }}
+        </a>
     </h1>
 
     @if ($message = session()->get('success'))
@@ -27,13 +29,13 @@
             <thead>
             <tr>
                 <th width="10"></th>
-                <th>Intro</th>
-                <th>Year</th>
-                <th>Position</th>
-                <th>Updated_at</th>
-                <th>Info</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>{{ trans('admin.abouts.outline') }}</th>
+                <th>{{ trans('admin.abouts.year') }}</th>
+                <th>{{ trans('admin.abouts.position') }}</th>
+                <th>{{ trans('admin.global.updated_at') }}</th>
+                <th>{{ trans('admin.global.info') }}</th>
+                <th>{{ trans('admin.global.edit') }}</th>
+                <th>{{ trans('admin.global.delete') }}</th>
             </tr>
             </thead>
             <tbody id="tablecontents">
@@ -45,14 +47,16 @@
                     <td>{{ $about->position }}</td>
                     <td>{{ $about->updated_at }}</td>
                     <td><a type="button" class="btn btn-info" href="{{ route('abouts.show', $about->id)
-                    }}">Info</a></td>
+                    }}">{{ trans('admin.global.info') }}</a></td>
                     <td><a type="button" class="btn btn-primary" href="{{ route('abouts.edit', $about->id)
-                    }}">Edit</a></td>
+                    }}">{{ trans('admin.global.edit') }}</a></td>
                     <td>
                         <form action="{{ route('abouts.destroy', $about->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">
+                                {{ trans('admin.global.delete') }}
+                            </button>
                         </form>
                     </td>
                 </tr>

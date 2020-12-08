@@ -58,7 +58,7 @@ class AboutLangController extends Controller
     public function edit($id)
     {
         $about_i18n = About_i18n::find($id);
-        $title = 'Edit：' . $about_i18n->title;
+        $title = trans('admin.abouts.detail-edit');
 
         return view('admin.abouts.lang.edit', compact('about_i18n', 'title'));
     }

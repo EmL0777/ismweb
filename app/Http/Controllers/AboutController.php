@@ -18,7 +18,7 @@ class AboutController extends Controller
     public function index()
     {
         $abouts = About::orderBy('position', 'ASC')->get();
-        $title = 'Abouts List';
+        $title = trans('admin.abouts.name');
 
         return view('admin.abouts.index', compact('abouts', 'title'));
     }
@@ -30,7 +30,9 @@ class AboutController extends Controller
      */
     public function create()
     {
-        return view('admin.abouts.create')->with('title', 'New About');
+        $title = trans('admin.abouts.create');
+
+        return view('admin.abouts.create', compact('title'));
     }
 
     /**
@@ -62,7 +64,7 @@ class AboutController extends Controller
         ]);
 
         return redirect()->route('abouts.index')
-            ->with('success', 'Create successfully.');
+            ->with('success', trans('admin.global.success.create'));
     }
 
     /**
@@ -73,7 +75,7 @@ class AboutController extends Controller
      */
     public function show(About $about)
     {
-        $title = 'Abouts Detail';
+        $title = trans('admin.abouts.detail');
 
         return view('admin.abouts.show',  compact('title','about'));
     }
@@ -86,7 +88,7 @@ class AboutController extends Controller
      */
     public function edit(About $about)
     {
-        $title = 'Edit About';
+        $title = trans('admin.abouts.edit');
         return view('admin.abouts.edit', compact('about', 'title'));
     }
 
@@ -108,7 +110,7 @@ class AboutController extends Controller
         $about->update($request->all());
 
         return redirect()->route('abouts.index')
-            ->with('success', 'Update successfully.');
+            ->with('success', trans('admin.global.success.update'));
     }
 
     /**
@@ -122,7 +124,7 @@ class AboutController extends Controller
         $about->delete();
 
         return redirect()->route('abouts.index')
-            ->with('success', " Deleted successfully.");
+            ->with('success', trans('admin.global.success.delete'));
     }
 
     /**
