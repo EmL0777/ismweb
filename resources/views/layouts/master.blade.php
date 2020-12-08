@@ -9,6 +9,7 @@
     <title>@yield('title') - ISM Official Web</title>
 
     @section('styles')
+        <link rel="stylesheet" href="{{ asset('/assets/css/jquery-ui.css') }}">
         <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/assets/css/plugins/metisMenu/metisMenu.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/assets/css/sb-admin-2.css') }}">
