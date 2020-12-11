@@ -34,17 +34,8 @@
             >
         </label>
 
-        <label for="year">
-            {{ trans('admin.abouts.year') }}：
-            <input type="text"
-                   id="year"
-                   name="event_year"
-                   placeholder="Event Year"
-                   class="date-picker-year"
-                   value="{{ old('event_year', $about->event_year) }}"
-                   autocomplete="off"
-            >
-        </label>
+        @include('admin.components.datepickerOnlyYearMonth', [
+                    'yearMonth' => $about->event_year_month])
 
         <label for="position">
             {{ trans('admin.abouts.position') }}：
@@ -105,31 +96,4 @@
             </tbody>
         </table>
     </div>
-@endsection
-
-@section('styles')
-    @parent
-    <style>
-        .ui-datepicker-calendar {
-            display: none;
-        }
-    </style>
-@endsection
-
-@section('scripts')
-    @parent
-    <script>
-        $(function () {
-            $('.date-picker-year').datepicker({
-                changeYear: true,
-                changeMonth: false,
-                yearRange: "c-40:c",
-                dateFormat: 'yy',
-                onClose: function (dateText, inst) {
-                    let year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                    $(this).datepicker('setDate', new Date(year, 1));
-                }
-            });
-        });
-    </script>
 @endsection

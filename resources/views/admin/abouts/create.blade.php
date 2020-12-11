@@ -6,7 +6,12 @@
 
 <!-- 傳送資料到母模板，並指定變數為 content -->
 @section('content')
-    <h1>{{ $title }}</h1>
+    <h1>
+        {{ $title }}
+        <a type="button" class="btn btn-primary" href="{{ route('abouts.index') }}">
+            {{ trans('admin.global.back') }}
+        </a>
+    </h1>
 
     {{-- 錯誤訊息模板元件 --}}
     @include('admin.components.validationErrorMessage')
@@ -29,16 +34,7 @@
             >
         </label>
 
-        <label for="year">
-            {{ trans('admin.abouts.year') }}：
-            <input type="text"
-                   id="year"
-                   name="event_year"
-                   placeholder="{{ trans('admin.abouts.year') }}"
-                   class="date-picker-year"
-                   autocomplete="off"
-            >
-        </label>
+        @include('admin.components.datepickerOnlyYearMonth', ['yearMonth' => ''])
 
         <label for="position">
             {{ trans('admin.abouts.position') }}：
@@ -57,31 +53,4 @@
         {{-- CSRF 欄位 --}}
         {{ csrf_field() }}
     </form>
-@endsection
-
-@section('styles')
-    @parent
-    <style>
-        .ui-datepicker-calendar {
-            display: none;
-        }
-    </style>
-@endsection
-
-@section('scripts')
-    @parent
-    <script>
-        $(function () {
-            $('.date-picker-year').datepicker({
-                changeYear: true,
-                changeMonth: false,
-                yearRange: "c-40:c",
-                dateFormat: 'yy',
-                onClose: function (dateText, inst) {
-                    let year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                    $(this).datepicker('setDate', new Date(year, 1));
-                }
-            });
-        });
-    </script>
 @endsection

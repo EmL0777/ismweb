@@ -18,7 +18,7 @@
                 <dt>{{ trans('admin.abouts.outline') }}</dt>
                 <dd>{{ $about->intro }}</dd>
                 <dt>{{ trans('admin.abouts.year') }}</dt>
-                <dd>{{ $about->event_year }}</dd>
+                <dd>{{ $about->event_year_month }}</dd>
                 <dt>{{ trans('admin.abouts.position') }}</dt>
                 <dd>{{ $about->position }}</dd>
                 <dt>{{ trans('admin.global.created_at') }}</dt>

@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAboutRequest extends FormRequest
+class UpdateAboutRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,10 +21,10 @@ class StoreAboutRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'intro' => 'required',
+            'intro' => 'required|max:255',
             'event_year_month' => 'required|date',
         ];
     }
@@ -41,7 +41,7 @@ class StoreAboutRequest extends FormRequest
     {
         if (!empty($this->event_year_month)) {
             $this->merge([
-                 'event_year_month' => $this->event_year_month . "-01",
+                'event_year_month' => $this->event_year_month . "-01",
             ]);
         }
     }

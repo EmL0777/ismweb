@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class About extends Model
@@ -14,7 +15,7 @@ class About extends Model
     protected $fillable = [
         'id',
         'intro',
-        'event_year',
+        'event_year_month',
         'position',
     ];
 
@@ -28,5 +29,10 @@ class About extends Model
         return static::withoutEvents(function () {
             return $this->save();
         });
+    }
+
+    public function getEventYearMonthAttribute($value): string
+    {
+        return $this->event_year_month = Str::substr($value, 0, 7);
     }
 }

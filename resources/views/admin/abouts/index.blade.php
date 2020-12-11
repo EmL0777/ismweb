@@ -43,7 +43,7 @@
                 <tr class="row1" data-id="{{ $about->id }}">
                     <td><i class="fa fa-sort"></i></td>
                     <td>{{ $about->intro }}</td>
-                    <td>{{ $about->event_year }}</td>
+                    <td>{{ $about->event_year_month }}</td>
                     <td>{{ $about->position }}</td>
                     <td>{{ $about->updated_at }}</td>
                     <td><a type="button" class="btn btn-info" href="{{ route('abouts.show', $about->id)

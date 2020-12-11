@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 $factory->define(About::class, function (Faker $faker) {
     return [
         'intro' => $faker->text(20),
-        'event_year' => $faker->year,
+        'event_year_month' => $faker->date('Y-m-d', 'now'),
         'position' => 0,
     ];
 });

@@ -24,7 +24,7 @@
 
         <div class="form-group">
             <label for="lang">
-                Language：
+                {{ trans('admin.global.language.name') }}：
                 <input type="text"
                        id="languages"
                        value="{{ $about_i18n->languages }}"
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label for="title">
-                Title：
+                {{ trans('admin.global.title') }}：
                 <input type="text"
                        id="title"
                        name="title"
@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label for="content">
-                Content：
+                {{ trans('admin.global.content') }}：
                 <textarea class="form-control"
                           name="content"
                           id="content"
@@ -56,7 +56,9 @@
                 >{!! old('content', $about_i18n->content) !!}</textarea>
             </label>
         </div>
-        <button type="submit" class="btn btn-success">Update</button>
+        <button type="submit" class="btn btn-success">
+            {{ trans('admin.global.edit') }}
+        </button>
 
         {{-- CSRF 欄位 --}}
         {{ csrf_field() }}

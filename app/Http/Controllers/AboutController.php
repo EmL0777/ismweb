@@ -6,6 +6,7 @@ use App\Entities\About;
 use App\Http\Requests\StoreAboutRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\UpdateAboutRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class AboutController extends Controller
@@ -38,7 +39,7 @@ class AboutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreAboutRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAboutRequest $request)
@@ -89,24 +90,19 @@ class AboutController extends Controller
     public function edit(About $about)
     {
         $title = trans('admin.abouts.edit');
+
         return view('admin.abouts.edit', compact('about', 'title'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\About  $about
-     * @return \Illuminate\Http\Response
+     * @param UpdateAboutRequest $request
+     * @param About $about
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, int $id)
+    public function update(UpdateAboutRequest $request, About $about)
     {
-        $about = About::findOrFail($id);
-        $request->validate([
-            'intro' => 'required|max:255',
-            'event_year' => 'required'
-        ]);
-
         $about->update($request->all());
 
         return redirect()->route('abouts.index')
