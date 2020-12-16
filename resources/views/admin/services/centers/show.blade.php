@@ -5,7 +5,7 @@
 @section('content')
     <h1>
         {{ $title }}：{{ $serviceCenter->title }}
-        <a type="button" class="btn btn-primary" href="{{ route('centers.index') }}">Back</a>
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.centers.index') }}">Back</a>
     </h1>
     <div class="panel panel-default">
         <div class="panel-heading">

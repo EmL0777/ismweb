@@ -13,7 +13,7 @@
 @section('content')
     <h1>
         {{ $title }}
-        <a type="button" class="btn btn-primary" href="{{ route('abouts.create') }}">
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.abouts.create') }}">
             {{ trans('admin.global.create') }}
         </a>
     </h1>
@@ -46,12 +46,12 @@
                     <td>{{ $about->event_year_month }}</td>
                     <td>{{ $about->position }}</td>
                     <td>{{ $about->updated_at }}</td>
-                    <td><a type="button" class="btn btn-info" href="{{ route('abouts.show', $about->id)
+                    <td><a type="button" class="btn btn-info" href="{{ route('Admin.abouts.show', $about->id)
                     }}">{{ trans('admin.global.info') }}</a></td>
-                    <td><a type="button" class="btn btn-primary" href="{{ route('abouts.edit', $about->id)
+                    <td><a type="button" class="btn btn-primary" href="{{ route('Admin.abouts.edit', $about->id)
                     }}">{{ trans('admin.global.edit') }}</a></td>
                     <td>
-                        <form action="{{ route('abouts.destroy', $about->id) }}" method="POST">
+                        <form action="{{ route('Admin.abouts.destroy', $about->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">
@@ -84,7 +84,7 @@
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url: "{{ route('abouts.reorder') }}",
+                        url: "{{ route('Admin.abouts.reorder') }}",
                         data: {
                             ids: ids,
                             _token: token

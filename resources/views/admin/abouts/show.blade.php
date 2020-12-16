@@ -5,7 +5,7 @@
 @section('content')
     <h1>
         {{ $title }}：{{ $about->intro }}
-        <a type="button" class="btn btn-primary" href="{{ route('abouts.index') }}">
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.abouts.index') }}">
             {{ trans('admin.global.back') }}
         </a>
     </h1>

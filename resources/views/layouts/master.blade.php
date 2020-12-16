@@ -43,7 +43,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ route('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a href="{{ route('Admin.logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul><!-- /.dropdown-user -->
                 </li><!-- /.dropdown -->
@@ -53,16 +53,16 @@
                 <div class="sidebar-nav navbar-collapse"><!-- /.sidebar-collapse -->
                     <ul class="nav" id="side-menu"><!-- /#side-menu -->
                         <li><!-- /.Dashboard -->
-                            <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ route('Admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li><!-- /.Dashboard -->
                         <li><!-- /.Dashboard -->
-                            <a href="{{ route('abouts.index') }}"><i class="fa fa-info fa-fw"></i> Abouts</a>
+                            <a href="{{ route('Admin.abouts.index') }}"><i class="fa fa-info fa-fw"></i> Abouts</a>
                         </li><!-- /.Dashboard -->
                         <li><!-- /.Multi-Level Dropdown -->
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Service<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level"><!-- /.nav-second-level -->
                                 <li>
-                                    <a href="{{ route('centers.index') }}">Centers</a>
+                                    <a href="{{ route('Admin.centers.index') }}">Centers</a>
                                 </li>
                                 <li>
                                     <a href="#">Second Level Item</a>
@@ -87,7 +87,7 @@
                             </ul><!-- /.nav-second-level -->
                         </li><!-- /.Multi-Level Dropdown -->
                         <li><!-- sample page -->
-                            <a href="{{ route('news.index') }}"><i class="fa fa-file-text-o fa-fw"></i> News</a>
+                            <a href="{{ route('Admin.news.index') }}"><i class="fa fa-file-text-o fa-fw"></i> News</a>
                         </li><!-- sample page -->
                         <li><!-- 商品管理  -->
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> 商品管理<span class="fa arrow"></span></a>

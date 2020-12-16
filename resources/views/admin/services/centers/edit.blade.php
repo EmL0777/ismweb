@@ -5,13 +5,13 @@
 @section('content')
     <h1>
         {{ $title }}：{{ $serviceCenter->title }}
-        <a type="button" class="btn btn-primary" href="{{ route('centers.index') }}">Back</a>
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.centers.index') }}">Back</a>
     </h1>
 
     {{-- 錯誤訊息模板元件 --}}
     @include('admin.components.validationErrorMessage')
 
-    <form action="{{ route('centers.update', $serviceCenter->id) }}"
+    <form action="{{ route('Admin.centers.update', $serviceCenter->id) }}"
           method="post"
           enctype="multipart/form-data"
           role="form"

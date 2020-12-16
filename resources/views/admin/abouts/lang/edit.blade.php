@@ -6,7 +6,7 @@
     <h1>
         {{ $title }}
         <a type="button" class="btn btn-primary"
-           href="{{ route('abouts.edit', $about_i18n->about_id) }}">
+           href="{{ route('Admin.abouts.edit', $about_i18n->about_id) }}">
             {{ trans('admin.global.back') }}
         </a>
     </h1>
@@ -14,7 +14,7 @@
     {{-- 錯誤訊息模板元件 --}}
     @include('admin.components.validationErrorMessage')
 
-    <form action="{{ route('about.lang.update', $about_i18n->id) }}"
+    <form action="{{ route('Admin.about.lang.update', $about_i18n->id) }}"
           method="post"
           enctype="multipart/form-data"
           role="form"

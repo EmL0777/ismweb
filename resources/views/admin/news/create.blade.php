@@ -8,13 +8,13 @@
 @section('content')
     <h1>
         {{ $title }}
-        <a href="{{ route('news.index') }}" class="btn btn-primary">Back to News</a>
+        <a href="{{ route('Admin.news.index') }}" class="btn btn-primary">Back to News</a>
     </h1>
 
     {{-- 錯誤訊息模板元件 --}}
     @include('admin.components.validationErrorMessage')
 
-    <form action="{{ route('news.store') }}"
+    <form action="{{ route('Admin.news.store') }}"
           method="post"
           enctype="multipart/form-data"
           role="form"

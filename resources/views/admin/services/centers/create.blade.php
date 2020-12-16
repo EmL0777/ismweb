@@ -11,7 +11,7 @@
     {{-- 錯誤訊息模板元件 --}}
     @include('admin.components.validationErrorMessage')
 
-    <form action="{{ route('centers.store') }}"
+    <form action="{{ route('Admin.centers.store') }}"
           method="post"
           enctype="multipart/form-data"
           role="form"

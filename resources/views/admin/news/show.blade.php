@@ -5,7 +5,7 @@
 @section('content')
     <h1>
         {{ $title }}：{{ $news->name }}
-        <a type="button" class="btn btn-primary" href="{{ route('news.index') }}">Back</a>
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.news.index') }}">Back</a>
     </h1>
     <div class="panel panel-info">
         <div class="panel-heading">

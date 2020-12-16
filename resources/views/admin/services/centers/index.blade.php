@@ -5,7 +5,7 @@
 @section('content')
     <h1>
         {{ $title }}
-        <a type="button" class="btn btn-primary" href="{{ route('centers.create') }}">Create</a>
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.centers.create') }}">Create</a>
     </h1>
 
     @if ($message = session()->get('success'))
@@ -36,11 +36,18 @@
                 <td>{{ $center->phone1 }}</td>
                 <td>{{ $center->attn }}</td>
                 <td>{{ $center->country }}</td>
-                <td><a type="button" class="btn btn-info" href="{{ route('centers.show', $center->id) }}">Info</a></td>
-                <td><a type="button" class="btn btn-primary" href="{{ route('centers.edit', $center->id)
-                }}">Edit</a></td>
                 <td>
-                    <form action="{{ route('centers.destroy', $center->id) }}" method="POST">
+                    <a type="button"
+                       class="btn btn-info"
+                       href="{{ route('Admin.centers.show', $center->id) }}">Info</a>
+                </td>
+                <td>
+                    <a type="button"
+                       class="btn btn-primary"
+                       href="{{ route('Admin.centers.edit', $center->id) }}">Edit</a>
+                </td>
+                <td>
+                    <form action="{{ route('Admin.centers.destroy', $center->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>

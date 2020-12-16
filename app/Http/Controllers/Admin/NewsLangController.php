@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Entities\News_i18n;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class NewsLangController extends Controller
 {
@@ -79,7 +80,7 @@ class NewsLangController extends Controller
 
         $news_i181n->update($request->all());
 
-        return redirect()->route('news.edit', $news_i181n->news_id)
+        return redirect()->route('Admin.news.edit', $news_i181n->news_id)
             ->with('success', 'Update successfully.');
     }
 

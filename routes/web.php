@@ -15,37 +15,37 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::group(['prefix' => 'admin'], function (){
-    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::group(['prefix' => 'admin', 'as' => 'Admin.'], function (){
+    Route::group(['namespace' => 'Auth'], function (){
+        Route::get('login', 'LoginController@showLoginForm')->name('login');
 
-    Route::post('auth/login', 'Auth\LoginController@login')->name('auth.login');
+        Route::post('auth/login', 'LoginController@login')->name('auth.login');
 
-    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
-    Route::get('/', function () {
-        $title = 'Dashboard';
-       return view('admin.dashboard', compact('title'));
-    })->name('admin.dashboard')->middleware('auth');
-
-    Route::group(['prefix' => 'services'], function (){
-        Route::resource('/centers', 'ServiceCenterController')->middleware('auth');
+        Route::get('logout', 'LoginController@logout')->name('logout');
     });
 
-    Route::resource('/news', 'NewsController')->middleware('auth');
+    Route::group(['namespace' => 'Admin', 'middleware' => ['auth'],], function (){
+        Route::get('/', function () {
+            $title = 'Dashboard';
+           return view('admin.dashboard', compact('title'));
+        })->name('dashboard');
 
-    Route::resource('/news/languages', 'NewsLangController')
-        ->only(['edit', 'update'])
-        ->middleware('auth');
+        // Abouts
+        Route::post('abouts/reorder', 'AboutController@reorder')->name('abouts.reorder');
+        Route::resource('abouts', 'AboutController');
+        Route::resource('/about/languages', 'AboutLangController', ['names' => [
+            'edit' => 'about.lang.edit',
+            'update' => 'about.lang.update'
+        ]])->only(['edit', 'update']);
 
-    Route::post('abouts/reorder', 'AboutController@reorder')
-        ->middleware('auth')
-        ->name('abouts.reorder');
-    Route::resource('abouts', 'AboutController')->middleware('auth');
+        // News
+        Route::resource('/news', 'NewsController');
+        Route::resource('/news/languages', 'NewsLangController')
+            ->only(['edit', 'update']);
 
-    Route::resource('/about/languages', 'AboutLangController', ['names' => [
-        'edit' => 'about.lang.edit',
-        'update' => 'about.lang.update'
-    ]])
-        ->only(['edit', 'update'])
-        ->middleware('auth');
+        // Services/centers
+        Route::group(['prefix' => 'services'], function (){
+            Route::resource('/centers', 'ServiceCenterController');
+        });
+    });
 });

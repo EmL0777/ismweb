@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Entities\About_i18n;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AboutLangController extends Controller
 {
@@ -53,7 +54,7 @@ class AboutLangController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -68,14 +69,14 @@ class AboutLangController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
         $about_i181n = About_i18n::findOrFail($id);
         $about_i181n->update($request->all());
 
-        return redirect()->route('abouts.edit', $about_i181n->about_id)
+        return redirect()->route('Admin.abouts.edit', $about_i181n->about_id)
             ->with('success', 'Update successfully.');
     }
 

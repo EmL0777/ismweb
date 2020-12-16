@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Entities\News;
+use App\Http\Controllers\Controller;
 
 class NewsController extends Controller
 {
@@ -73,7 +74,7 @@ class NewsController extends Controller
             ],
         ]);
 
-        return redirect()->route('news.index')
+        return redirect()->route('Admin.news.index')
             ->with('success', 'Create successfully.');
     }
 
@@ -129,7 +130,7 @@ class NewsController extends Controller
 
         $news->update($request->all());
 
-        return redirect()->route('news.index')
+        return redirect()->route('Admin.news.index')
             ->with('success', 'Update successfully.');
     }
 
@@ -144,7 +145,7 @@ class NewsController extends Controller
         $news = News::find($id);
         $news->delete();
 
-        return redirect()->route('news.index')
+        return redirect()->route('Admin.news.index')
             ->with('success', " Deleted successfully.");
     }
 }

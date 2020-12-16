@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Entities\About;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAboutRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -64,7 +65,7 @@ class AboutController extends Controller
             ]
         ]);
 
-        return redirect()->route('abouts.index')
+        return redirect()->route('Admin.abouts.index')
             ->with('success', trans('admin.global.success.create'));
     }
 
@@ -105,7 +106,7 @@ class AboutController extends Controller
     {
         $about->update($request->all());
 
-        return redirect()->route('abouts.index')
+        return redirect()->route('Admin.abouts.index')
             ->with('success', trans('admin.global.success.update'));
     }
 
@@ -119,7 +120,7 @@ class AboutController extends Controller
     {
         $about->delete();
 
-        return redirect()->route('abouts.index')
+        return redirect()->route('Admin.abouts.index')
             ->with('success', trans('admin.global.success.delete'));
     }
 

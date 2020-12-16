@@ -8,7 +8,7 @@
 @section('content')
     <h1>
         {{ $title }}
-        <a type="button" class="btn btn-primary" href="{{ route('news.create') }}">Create</a>
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.news.create') }}">Create</a>
     </h1>
 
     @if ($message = session()->get('success'))
@@ -51,12 +51,12 @@
                         @endif
                     </td>
                     <td>{{ $news->updated_at }}</td>
-                    <td><a type="button" class="btn btn-info" href="{{ route('news.show', $news->id)
+                    <td><a type="button" class="btn btn-info" href="{{ route('Admin.news.show', $news->id)
                     }}">Info</a></td>
-                    <td><a type="button" class="btn btn-primary" href="{{ route('news.edit', $news->id)
+                    <td><a type="button" class="btn btn-primary" href="{{ route('Admin.news.edit', $news->id)
                     }}">Edit</a></td>
                     <td>
-                        <form action="{{ route('news.destroy', $news->id) }}" method="POST">
+                        <form action="{{ route('Admin.news.destroy', $news->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

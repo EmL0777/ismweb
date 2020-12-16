@@ -5,13 +5,13 @@
 @section('content')
     <h1>
         {{ $title }}：{{ $news->name }}
-        <a type="button" class="btn btn-primary" href="{{ route('news.index') }}">Back</a>
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.news.index') }}">Back</a>
     </h1>
 
     {{-- 錯誤訊息模板元件 --}}
     @include('admin.components.validationErrorMessage')
 
-    <form action="{{ route('news.update', $news->id) }}"
+    <form action="{{ route('Admin.news.update', $news->id) }}"
           method="post"
           enctype="multipart/form-data"
           role="form"
@@ -70,7 +70,7 @@
                     <td>{{ $news_i18n->title }}</td>
                     <td>{{ $news_i18n->content }}</td>
                     <td>{{ $news_i18n->languages }}</td>
-                    <td><a type="button" class="btn btn-primary" href="{{ route('languages.edit', $news_i18n->id)
+                    <td><a type="button" class="btn btn-primary" href="{{ route('Admin.languages.edit', $news_i18n->id)
                     }}">Edit</a></td>
                 </tr>
             @endforeach

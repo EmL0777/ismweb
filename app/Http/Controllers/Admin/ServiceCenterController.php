@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Entities\ServiceCenter;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ServiceCenterController extends Controller
 {
@@ -59,7 +60,7 @@ class ServiceCenterController extends Controller
 
         ServiceCenter::create($request->all());
 
-        return redirect()->route('centers.index');
+        return redirect()->route('Admin.centers.index');
     }
 
     /**
@@ -116,7 +117,7 @@ class ServiceCenterController extends Controller
 
         $serviceCenter->update($request->all());
 
-        return redirect()->route('centers.index')
+        return redirect()->route('Admin.centers.index')
             ->with('success', 'Update successfully.');
     }
 
@@ -131,7 +132,7 @@ class ServiceCenterController extends Controller
         $center = ServiceCenter::find($id);
         $center->delete();
 
-        return redirect()->route('centers.index')
+        return redirect()->route('Admin.centers.index')
             ->with('success', " Deleted successfully.");
     }
 }

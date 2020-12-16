@@ -15,7 +15,7 @@
                 <h3 class="panel-title">Please Sign In</h3>
             </div>
             <div class="panel-body">
-                <form action="{{ route('auth.login') }}" method="post" role="form">
+                <form action="{{ route('Admin.auth.login') }}" method="post" role="form">
                     <fieldset>
                         <div class="form-group">
                             <input class="form-control"

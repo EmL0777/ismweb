@@ -8,7 +8,7 @@
 @section('content')
     <h1>
         {{ $title }}
-        <a type="button" class="btn btn-primary" href="{{ route('abouts.index') }}">
+        <a type="button" class="btn btn-primary" href="{{ route('Admin.abouts.index') }}">
             {{ trans('admin.global.back') }}
         </a>
     </h1>
@@ -16,7 +16,7 @@
     {{-- 錯誤訊息模板元件 --}}
     @include('admin.components.validationErrorMessage')
 
-    <form action="{{ route('abouts.update', $about->id) }}"
+    <form action="{{ route('Admin.abouts.update', $about->id) }}"
           method="post"
           enctype="multipart/form-data"
           role="form"
@@ -87,7 +87,7 @@
                     </td>
                     <td>
                         <a type="button" class="btn btn-primary"
-                           href="{{ route('about.lang.edit', $abouts_i18n->id)}}">
+                           href="{{ route('Admin.about.lang.edit', $abouts_i18n->id)}}">
                             {{ trans('admin.global.edit') }}
                         </a>
                     </td>
